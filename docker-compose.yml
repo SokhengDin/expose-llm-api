@@ -16,7 +16,7 @@ services:
       start_period: 10s
 
   llama-cpp:
-    image: ghcr.io/ggerganov/llama.cpp:server-cuda
+    image: ghcr.io/ggml-org/llama.cpp:server-cuda
     volumes:
       - ./models:/models
     command: ["-m", "/models/model.gguf", "--host", "0.0.0.0", "--port", "8080", "-ngl", "999"]
