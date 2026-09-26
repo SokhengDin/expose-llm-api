@@ -20,7 +20,7 @@ services:
     image: ghcr.io/ggml-org/llama.cpp:server-cuda
     volumes:
       - ./models:/models
-    command: ["-m", "/models/model.gguf", "--host", "0.0.0.0", "--port", "8080", "-ngl", "999", "-c", "8192", "--parallel", "1"]
+    command: ["-m", "/models/model.gguf", "--host", "0.0.0.0", "--port", "8080", "-ngl", "999", "-c", "16384", "--parallel", "1"]
     restart: unless-stopped
     deploy:
       resources:
