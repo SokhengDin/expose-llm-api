@@ -5,6 +5,7 @@ services:
       - .env
     ports:
       - "${PORT:-8000}:8000"
+    restart: unless-stopped
     depends_on:
       llama-cpp:
         condition: service_healthy
@@ -20,6 +21,7 @@ services:
     volumes:
       - ./models:/models
     command: ["-m", "/models/model.gguf", "--host", "0.0.0.0", "--port", "8080", "-ngl", "999"]
+    restart: unless-stopped
     deploy:
       resources:
         reservations:
@@ -31,5 +33,5 @@ services:
       test: ["CMD-SHELL", "echo > /dev/tcp/127.0.0.1/8080 || exit 1"]
       interval: 10s
       timeout: 5s
-      retries: 5
-      start_period: 30s
+      retries: 10
+      start_period: 180s

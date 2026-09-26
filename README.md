@@ -4,7 +4,7 @@ Minimal FastAPI reverse proxy in front of a local `llama.cpp` server, protected 
 
 ## Usage
 
-1. Drop a `.gguf` model file into `./models/` (update the filename in `docker-compose.yml` if it's not `model.gguf`).
+1. Drop a `.gguf` model file into `./models/` (update the filename in `docker-compose.yml` if it's not `model.gguf`). Make sure the model fits in your GPU's VRAM at your chosen quantization — if it doesn't, `llama-cpp` will fail to start with a CUDA out-of-memory error; lower `-ngl` in `docker-compose.yml` (fewer layers offloaded to GPU) or pick a smaller quant if that happens.
 2. Copy the env file and set your own key:
    ```bash
    cp .env.example .env
